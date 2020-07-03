@@ -19,15 +19,17 @@ from selenium.webdriver.support.ui import WebDriverWait
 # 테스트서버 입력
 eSCM_server = '02'
 RMS_server = '01'
-rms_web_id = 'qa_auto_test'
-rms_web_pw = 'kurlyqa123!'
+# rms_web_id = 'qa_auto_test'
+# rms_web_pw = 'kurlyqa123!'
 driver = webdriver.Chrome('/Users/tf-mac-065/PycharmProjects/autotest/chromedriver')
 driver.implicitly_wait(10)
 now = datetime.datetime.today()
 print()
 print('테스트 시작시간 ▼')
 print(now)
-# 발주서 생성
+
+# 1.
+# 발주그룹 등록
 # eSCM md 로그인
 driver.get('https://front' + eSCM_server + '.escm.dev.kurly.com/#/stafflogin')
 # 아이디 입력란을 찾은 후, 아이디를 입력함
@@ -63,9 +65,12 @@ WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, '
 time.sleep(3)
 driver.find_element_by_xpath('/html/body/div[2]/div[1]/div/div/header/button').click()
 time.sleep(4)
+
+# 2.
 # 발주서그룹에서 발주등록
 driver.find_element_by_xpath('/html/body/div/div[1]/div/div[1]/div/div[2]/div/ul/li[3]/a/span').click()
 driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[2]/div[5]/div/div/table/tbody/tr[1]/td[10]/button').click()
+time.sleep(1)
 driver.find_element_by_xpath('/html/body/div/div[1]/div/div[2]/div/div[3]/div[3]/div[2]/button[1]').click()
 # 발주서 등록완료 팝업 닫기
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'modal-content')))
